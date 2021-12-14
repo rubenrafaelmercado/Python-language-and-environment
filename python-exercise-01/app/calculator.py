@@ -2,6 +2,8 @@
 
 def calculator ( number1, number2, operation ):
 
+    # improvement to refactor: merge operations and results
+    
     operations = [ "+", "-", "/", "*" ]
 
     results = {
@@ -16,3 +18,4 @@ def calculator ( number1, number2, operation ):
     else:
         return ( 'not valid operation' )
 
+    
