@@ -1,9 +1,8 @@
 FROM python:3.9.9
 
+RUN mkdir -p /code
+
 WORKDIR /code
 
-ADD ./calculator.py /code
-
-EXPOSE 5000
 
 
