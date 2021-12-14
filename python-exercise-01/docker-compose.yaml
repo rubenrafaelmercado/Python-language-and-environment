@@ -4,10 +4,10 @@ services:
   
   app:
     build: app    
-    #volumes:
-      #- ./app:/code
+    volumes:
+      - ./app:/code
     ports:
       - 5000:5000
 
-#volumes:
-  #app:
+volumes:
+  app:
