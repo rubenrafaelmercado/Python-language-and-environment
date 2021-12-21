@@ -4,5 +4,5 @@ RUN mkdir -p /code
 
 WORKDIR /code
 
-
+ENTRYPOINT [ "bash" ]
 
