@@ -29,7 +29,7 @@ def get_students(request):
 
 def get_student(request, id_student):    
     student = Student.objects.get(pk=id_student)
-    raise Exception(student.first_name.title())
+    #raise Exception(student.first_name.title())
     html = '<html><body><h1>Students<H1>'
     html += f'<p>Apellido: {student.last_name}</p>'
     html += f'<p>Nombre: {student.first_name}</p>'
