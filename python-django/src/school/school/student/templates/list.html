@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <body>
+        
+        <h1>Students list</h1>
+        
+        <hr>
+                       
+        {% for item in students %}
+
+            <p> first name: {{ first.last_name }} </p>
+            <p> Last name: {{ item.last_name }} </p>
+            <p> Borning date: {{ item.borning_date }} </p>
+            <br>
+
+        {% endfor %}
+        
+        <hr><br>
+        <img src="{% static 'img/python-logo.png' %}" height="80px" width="auto">
+        
+    </body>
+</html>
