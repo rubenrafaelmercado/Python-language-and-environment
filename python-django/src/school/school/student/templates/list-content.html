@@ -10,9 +10,20 @@
 
         <p> first name: {{ item.first_name }} </p>
         <p> Last name: {{ item.last_name }} </p>
+        <p> Course: {{ item.course }} </p>
         <p> Borning date: {{ item.borning_date }} </p>
         <br>
 
     {% endfor %}
+
+    <hr>
+
+    <p> Add a student </p>
+
+    <form method="POST" action="/students/">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit"> Send </button>
+    </form>
         
 {% endblock %}        

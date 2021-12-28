@@ -9,6 +9,16 @@
                        
         <p> Last name: {{ student.last_name }} </p>
         <p> Borning date: {{ student.borning_date }} </p>
+
+        <hr>
+
+        <p> Edit student</p>
+
+        <form method="POST" action="/students/{{student.pk}}/">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit"> Send </button>
+        </form>
         
         <hr><br>
         <img src="{% static 'img/python-logo.png' %}" height="80px" width="auto">

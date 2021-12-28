@@ -2,6 +2,8 @@ from django.http import HttpResponse, JsonResponse
 import datetime
 from django.shortcuts import render
 from .models import Student
+from .forms import StudentForm
+
 
 
 def current_datetime(request):
@@ -19,8 +21,7 @@ def add_student(request):
     
 
 def get_students(request):    
-    students = Student.objects.all()
-    
+        
     '''
     #Whithout template
     html = '<html><body><h1>Students<H1>'
@@ -34,10 +35,31 @@ def get_students(request):
     #return render(request, 'list.html', context = {'students' : students})
 
     #With base template
-    return render(request, 'list-content.html', context = {'students' : students})
+    #return render(request, 'list-content.html', context = {'students' : students})
+
+    #whith forms
+    form = StudentForm()
+    validation_error = False
+    if request.method == 'POST':
+        form = StudentForm(request.POST)        
+        if form.is_valid():
+            form.save(commit = True)
+        else:
+            validation_error = True
+    
+    students = Student.objects.all()
+
+    return render(request, 
+            'list-content.html',
+            context = {
+                'students' : students,
+                'form' : form,
+                'validation_error' : validation_error,
+            })
 
 
 def get_student(request, id_student):    
+    
     student = Student.objects.get(pk=id_student)
         
     #debug var
@@ -53,9 +75,26 @@ def get_student(request, id_student):
     return HttpResponse(html)    '''
 
     #With a template
-    return render(request, 'detail.html', context = {'student' : student})
+    #return render(request, 'detail.html', context = {'student' : student})
 
 
+    #whith forms
+    form = StudentForm( instance=student )
+    validation_error = False    
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)                
+        if form.is_valid():
+            form.save(commit = True)
+        else:
+            validation_error = True
+
+    return render(request, 
+            'detail.html',
+            context = {
+                'student' : student,
+                'form' : form,
+                'validation_error' : validation_error,
+            })
 
 
 
