@@ -35,7 +35,7 @@ class StudentForm (ModelForm):
         model = Student
         #fields =['first_name' , 'last_name',  'borning_date']
         #fields = ['first_name' , 'last_name']
-        fields =['first_name' , 'last_name', 'course', 'borning_date']
+        fields =['first_name' , 'last_name', 'course', 'status', 'borning_date']
 
     #custom validation
     def clean_first_name (self):

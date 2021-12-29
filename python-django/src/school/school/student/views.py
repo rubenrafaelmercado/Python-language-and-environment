@@ -3,6 +3,7 @@ import datetime
 from django.shortcuts import render
 from .models import Student
 from .forms import StudentForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -11,7 +12,7 @@ def current_datetime(request):
     html = "<html><body>It is now %s.</body></html>" % now
     return HttpResponse(html)
 
-
+@login_required
 def add_student(request):        
     #raise Exception(first_name)    
     Student.objects.create(first_name=request.GET.get('first_name', '-'),
@@ -20,6 +21,7 @@ def add_student(request):
     return JsonResponse(response)
     
 
+@login_required
 def get_students(request):    
         
     '''
@@ -57,7 +59,7 @@ def get_students(request):
                 'validation_error' : validation_error,
             })
 
-
+@login_required
 def get_student(request, id_student):    
     
     student = Student.objects.get(pk=id_student)
